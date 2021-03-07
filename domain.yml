@@ -1,0 +1,185 @@
+version: "2.0"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mo_tai_khoan
+  - reset_ma_pin
+  - ung_tien
+  - nhap_du_lieu
+
+entities:
+  - loai_tai_khoan
+  - chung_minh_thu
+  - so_tai_khoan
+  - so_dien_thoai
+  - ma_pin
+
+slots:
+  loai_tai_khoan:
+    type: text
+    influence_conversation: false
+  chung_minh_thu:
+    type: text
+    influence_conversation: false
+  da_co_tai_khoan:
+    type: bool
+  so_tai_khoan:
+    type: text
+    influence_conversation: false
+  so_dien_thoai:
+    type: text
+    influence_conversation: false
+  ma_pin:
+    type: text
+    influence_conversation: false
+  kiem_tra_ma_pin:
+    type: bool
+  tieu_khoan:
+    type: categorical
+    values:
+      - "1"
+      - "3"
+      - "6"
+    influence_conversation: false
+  so_tien_ung_truoc:
+    type: text
+    influence_conversation: false
+
+responses:
+  utter_greet:
+  - text: "Chào Qúy khách, tôi là bot VietPhuong."
+
+  utter_did_that_help:
+  - text: "Tôi có thể giúp gì cho Qúy khách?"
+    buttons:
+      - title: "Mở tài khoản"
+        payload: "Mở tài khoản"
+      - title: "Reset PIN"
+        payload: "Reset PIN"
+      - title: "Tra cứu tiền ứng trước"
+        payload: "Tra cứu tiền ứng trước"
+
+  utter_goodbye:
+  - text: "Tạm biệt"
+
+  utter_ask_loai_tai_khoan:
+  - text: "Qúy khách muốn mở loại tài khoản nào?"
+    buttons:
+      - title: "Cá nhân"
+        payload: "Cá nhân"
+      - title: "Tổ chức"
+        payload: "Tổ chức"
+
+  utter_not_validate_loai_tai_khoan:
+  - text: "Quý khách cần chọn Cá nhân hoặc Tổ chức."
+
+  utter_ask_chung_minh_thu:
+  - text: "Vui lòng nhập số chứng minh thư hoặc căn cước."
+
+  utter_not_validate_chung_minh_thu:
+  - text: "Quý khách cần ghi đúng định dạng chứng minh thư"
+
+  utter_thong_bao_da_co_tai_khoan:
+  - text: "Số {chung_minh_thu} đã được mở tài khoản. Quý khách vui lòng gọi lên tổng đài để kiểm tra"
+
+  utter_confirm_tai_khoan_form:
+  - text: "Xác nhận thông tin từ Quý khách:\n Loại tài khoản: {loai_tai_khoan}.\n Số chứng minh thư: {chung_minh_thu}.  "
+  utter_hoi_ekyc:
+    - text: "Qúy khách có thể mở tài khoản bằng eKYC. Quý khách có muốn mở ngay bây giờ?"
+
+  utter_cach_mo_tai_khoan_eykc:
+    - text: "https://www.vps.com.vn/ekyc"
+
+  utter_cach_mo_tai_khoan_khac:
+    - text: "Quý khách có thể tham khảo cách mở tài khoản khác tại https://www.vps.com.vn/"
+
+  utter_ask_so_tai_khoan:
+    - text: "Quý khách vui lòng nhập số tài khoản chứng khoán để được hỗ trợ."
+
+  utter_not_validate_so_tai_khoan:
+    - text: "Số tài khoản là 10 ký tự bao gồm 026C hoặc 6 số cuối sau 026C"
+  utter_ask_so_dien_thoai:
+    - text: "Quý khách vui lòng cung cấp số điện thoại."
+
+  utter_ask_ma_pin:
+    - text: "Vui lòng nhập mã Pin để được tiếp tục hỗ trợ."
+
+  utter_reset_ma_pin_thanh_cong:
+    - text: "Yêu cầu reset mã Pin đã được tiếp nhận. Quý khách vui lòng kiểm tra email/số điện thoại đã đăng ký."
+
+  utter_reset_ma_pin_that_bai:
+    - text: "Thông tin không chính xác để hỗ trợ. Quý khách vui lòng liên hệ với tổng đài."
+
+  utter_submit_ung_tien_form:
+    - text: "Hiện tại, TKCK {so_tai_khoan} - {tieu_khoan} có thể ứng tối đa 10.0000.000 VNĐ."
+
+  utter_ask_to_contine:
+    - text: "Quý khách có cần hỗ trợ thêm vấn đề gì không ạ?"
+
+  utter_ask_tieu_khoan:
+    - text: "Qúy khách vui lòng chọn tiểu khoản chứng khoán muốn tra cứu thông tin"
+      buttons:
+        - title: "Tiểu khoản thường (đuôi 1)"
+          payload: "1"
+        - title: "Tiểu khoản chuyên biệt (đuôi 3)"
+          payload: "3"
+        - title: "Tiểu khoản margin (đuôi 6)"
+          payload: "6"
+  utter_not_validate_tieu_khoan:
+    - text: "Quý khách cần chọn đúng 1 trong các loại tiểu khoản."
+actions:
+  - action_kiem_tra_chung_minh_thu
+  - action_kiem_tra_ma_pin
+  - validate_tai_khoan_form
+  - validate_reset_pin_form
+
+forms:
+  tai_khoan_form:
+    loai_tai_khoan:
+      - type: from_entity
+        entity: loai_tai_khoan
+      - type: from_text
+        intent: nhap_du_lieu
+    chung_minh_thu:
+      - type: from_entity
+        entity: chung_minh_thu
+      - type: from_text
+        intent: nhap_du_lieu
+  reset_pin_form:
+    so_tai_khoan:
+      - type: from_entity
+        entity: so_tai_khoan
+      - type: from_text
+        intent: nhap_du_lieu
+    so_dien_thoai:
+      - type: from_entity
+        entity: so_dien_thoai
+      - type: from_text
+        intent: nhap_du_lieu
+    ma_pin:
+      - type: from_text
+        intent: nhap_du_lieu
+
+  ung_tien_form:
+    chung_minh_thu:
+      - type: from_entity
+        entity: chung_minh_thu
+      - type: from_text
+        intent: nhap_du_lieu
+    ma_pin:
+      - type: from_text
+        intent: nhap_du_lieu
+    so_tai_khoan:
+      - type: from_entity
+        entity: so_tai_khoan
+      - type: from_text
+        intent: nhap_du_lieu
+    tieu_khoan:
+      - type: from_text
+        intent: nhap_du_lieu
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

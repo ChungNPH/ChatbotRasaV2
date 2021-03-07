@@ -1,0 +1,70 @@
+version: "2.0"
+
+stories:
+
+- story: greet
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_did_that_help
+
+- story: restart
+  steps:
+  - intent: restart
+  - action: action_restart
+  - action: utter_greet
+  - action: utter_did_that_help
+#- story: mo tai khoan - da co tai khoan
+#  steps:
+#  - intent: greet
+#  - action: utter_greet
+#  - action: utter_did_that_help
+#  - intent: mo_tai_khoan
+#  - action: tai_khoan_form
+#  - active_loop: tai_khoan_form
+#  - active_loop: null
+#  - slot_was_set:
+#    - requested_slot: null
+#  - action: utter_confirm_tai_khoan_form
+#  - action: action_kiem_tra_chung_minh_thu
+#  - slot_was_set:
+#    - da_co_tai_khoan: True
+#  - action: utter_thong_bao_da_co_tai_khoan
+#
+#- story: mo tai khoan - ekyc
+#  steps:
+#  - intent: greet
+#  - action: utter_greet
+#  - action: utter_did_that_help
+#  - intent: mo_tai_khoan
+#  - action: tai_khoan_form
+#  - active_loop: tai_khoan_form
+#  - active_loop: null
+#  - slot_was_set:
+#    - requested_slot: null
+#  - action: utter_confirm_tai_khoan_form
+#  - action: action_kiem_tra_chung_minh_thu
+#  - slot_was_set:
+#    - da_co_tai_khoan: False
+#  - action: utter_hoi_ekyc
+#  - intent: affirm
+#  - action: utter_cach_mo_tai_khoan_eykc
+#
+#- story: mo tai khoan - hinh thuc khac
+#  steps:
+#  - intent: greet
+#  - action: utter_greet
+#  - action: utter_did_that_help
+#  - intent: mo_tai_khoan
+#  - action: tai_khoan_form
+#  - active_loop: tai_khoan_form
+#  - active_loop: null
+#  - slot_was_set:
+#    - requested_slot: null
+#  - action: utter_confirm_tai_khoan_form
+#  - action: action_kiem_tra_chung_minh_thu
+#  - slot_was_set:
+#    - da_co_tai_khoan: False
+#  - action: utter_hoi_ekyc
+#  - intent: deny
+#  - action: utter_cach_mo_tai_khoan_khac

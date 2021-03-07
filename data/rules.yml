@@ -1,0 +1,100 @@
+version: "2.0"
+
+rules:
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Say greet anytime the user says greet
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_did_that_help
+
+
+- rule: Active reset_pin_form if not activate
+  condition:
+    - active_loop: null
+  steps:
+  - intent: reset_ma_pin
+  - action: reset_pin_form
+  - active_loop: reset_pin_form
+
+# rule for dang ky tai khoan chung khoan
+- rule: Active tai_khoan_form if not activate
+  steps:
+  - intent: mo_tai_khoan
+  - action: tai_khoan_form
+  - active_loop: tai_khoan_form
+
+- rule: Submit form, deactive, anc check id
+  condition:
+  - active_loop: tai_khoan_form
+  steps:
+  - action: tai_khoan_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_confirm_tai_khoan_form
+  - action: action_kiem_tra_chung_minh_thu
+
+- rule: hoi mo ekyc - dong y
+  steps:
+  - action: utter_hoi_ekyc
+  - intent: affirm
+  - action: utter_cach_mo_tai_khoan_eykc
+
+- rule: hoi mo ekyc - khong dong y
+  steps:
+  - action: utter_hoi_ekyc
+  - intent: deny
+  - action: utter_cach_mo_tai_khoan_khac
+
+# rule for reset ma pin
+- rule: Active reset_pin_form if not activate
+  steps:
+  - intent: reset_ma_pin
+  - action: reset_pin_form
+  - active_loop: reset_pin_form
+
+- rule: Submit form, deactive, anc check pin
+  condition:
+  - active_loop: reset_pin_form
+  steps:
+  - action: reset_pin_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_kiem_tra_ma_pin
+
+# rule for ung tien form
+- rule: Active ung_tien_form if not activate
+  steps:
+  - intent: ung_tien
+  - action: ung_tien_form
+  - active_loop: ung_tien_form
+
+- rule: Submit form, deactive,and respone amount money
+  condition:
+  - active_loop: ung_tien_form
+  steps:
+  - action: ung_tien_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_submit_ung_tien_form
+  - action: utter_ask_to_continue
+
+- rule: ask to continue - yes
+  steps:
+  - action: utter_ask_to_continue
+  - intent: affirm
+  - action: utter_did_that_help
+
+- rule: ask to continue - no
+  steps:
+  - action: utter_ask_to_continue
+  - intent: deny
+  - action: utter_goodbye

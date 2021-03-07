@@ -1,0 +1,111 @@
+version: "2.0"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - xin chào
+    - chào bạn
+    - chào buổi sáng
+    - chào buổi tối
+    - chào buổi chiều
+    - bạn có ở đó không
+    - bạn ơi
+    - bạn à
+
+- intent: goodbye
+  examples: |
+    - tạm biệt
+    - bye
+    - good bye
+    - gặp lại sau
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: affirm
+  examples: |
+    - đúng rồi
+    - chính xác
+    - tất nhiên
+    - nghe hay đó
+    - đúng
+    - ok
+    - yes
+    - có
+
+- intent: deny
+  examples: |
+    - sai
+    - sai rồi
+    - no
+    - không phải thế
+    - không đúng
+    - không nghĩ vậy
+    - không đời nào
+    - không phải
+    - không
+
+- intent: restart
+  examples: |
+    - thoát ra
+    - chạy lại
+    - restart
+    - exit
+
+- intent: mo_tai_khoan
+  examples: |
+    - mở tài khoản
+    - mình muốn mở tài khoản chứng khoán
+    - cho mình mở tài khoản chứng khoán
+    - tạo tài khoản
+    - tạo tài khoản chứng khoán
+    - đăng ký tài khoản
+    - đăng ký tài khoản chứng khoán
+
+- intent: reset_ma_pin
+  examples: |
+    - reset mã PIN
+    - reset PIN
+    - đặt lại mã PIN
+    - đặt lại PIN
+
+- intent: ung_tien
+  examples: |
+    - tra cứu số tiền ứng trước
+    - ứng tiền trước
+    - số tiền để ứng tiền
+
+- intent: nhap_du_lieu
+  examples: |
+    - tài khoản [cá nhân](loai_tai_khoan)
+    - tài khoản [tổ chức](loai_tai_khoan)
+    - [cá nhân](loai_tai_khoan)
+    - [tổ chức](loai_tai_khoan)
+    - chứng minh thư của tôi là [012341512](chung_minh_thu)
+    - [142649659](chung_minh_thu)
+    - là [987654321](chung_minh_thu)
+    - cmt [159753468](chung_minh_thu)
+    - cmt [142649659](chung_minh_thu)
+    - cmt là [098765432](so_tai_khoan)
+    - [026C123456](so_tai_khoan)
+    - tkck [232513](so_tai_khoan)
+    - tkck [026C654321](so_tai_khoan)
+    - [026C789456](so_tai_khoan)
+    - số điện thoại của tôi là [03881123](so_dien_thoai)
+    - [0902111394](so_dien_thoai)
+    - là [19005023](so_dien_thoai)
+    - sdt [0788378196](so_dien_thoai)
+    - [efgh](ma_pin)
+    - [fjzgr](ma_pin)
+    - [asdfb](ma_pin)
+    - [@123](ma_pin)
+    - [1](tieu_khoan)
+    - [3](tieu_khoan)
+    - [6](tieu_khoan)
