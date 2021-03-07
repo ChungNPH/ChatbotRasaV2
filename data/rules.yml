@@ -98,3 +98,23 @@ rules:
   - action: utter_ask_to_continue
   - intent: deny
   - action: utter_goodbye
+
+# humand hand off
+- rule: out of scope
+  steps:
+  - intent: out_of_scope
+  - action: utter_out_of_scope
+  - action: utter_ask_to_human_handoff
+
+- rule: humand hand off - yes
+  steps:
+  - action: utter_ask_to_human_handoff
+  - intent: affirm
+  - action: utter_confirm_to_human_handoff
+
+- rule: humand hand off - no
+  steps:
+  - action: utter_ask_to_human_handoff
+  - intent: deny
+  - action: utter_greet
+  - action: utter_did_that_help

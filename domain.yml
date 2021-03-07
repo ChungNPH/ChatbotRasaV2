@@ -116,7 +116,7 @@ responses:
   utter_submit_ung_tien_form:
     - text: "Hiện tại, TKCK {so_tai_khoan} - {tieu_khoan} có thể ứng tối đa 10.0000.000 VNĐ."
 
-  utter_ask_to_contine:
+  utter_ask_to_continue:
     - text: "Quý khách có cần hỗ trợ thêm vấn đề gì không ạ?"
 
   utter_ask_tieu_khoan:
@@ -128,8 +128,19 @@ responses:
           payload: "3"
         - title: "Tiểu khoản margin (đuôi 6)"
           payload: "6"
+
   utter_not_validate_tieu_khoan:
     - text: "Quý khách cần chọn đúng 1 trong các loại tiểu khoản."
+
+  utter_out_of_scope:
+   - text: "Xin lỗi, Bot không thể xử lý yêu cầu này của quý khách."
+
+  utter_ask_to_human_handoff:
+   - text: "Nội dung nằm ngoài phạm vi của Bot. Quý khách có muốn chuyển câu hỏi tới Tổng đài viên không?"
+
+  utter_confirm_to_human_handoff:
+   - text: "Đang kết nối tới tổng đài viên ..."
+
 actions:
   - action_kiem_tra_chung_minh_thu
   - action_kiem_tra_ma_pin

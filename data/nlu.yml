@@ -109,3 +109,9 @@ nlu:
     - [1](tieu_khoan)
     - [3](tieu_khoan)
     - [6](tieu_khoan)
+
+- intent: out_of_scope
+  examples: |
+    - Hôm nay mã chứng khoán nào tăng?
+    - Phím mã đi
+    - thị trường tăng hay giảm
